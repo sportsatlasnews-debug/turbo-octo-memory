@@ -16,10 +16,10 @@ export default function Navbar() {
         </div>
       </div>
 
-      <button className="bg-mikePurple text-white px-6 py-2 rounded-full font-semibold flex items-center gap-2 hover:bg-opacity-90 transition">
+      <a href="/bashkohu" className="bg-mikePurple text-white px-6 py-2 rounded-full font-semibold flex items-center gap-2 hover:bg-opacity-90 transition">
         Apliko 
         <span className="text-xs">▼</span>
-      </button>
+      </a>
     </nav>
   );
 }

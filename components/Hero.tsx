@@ -31,9 +31,9 @@ export default function Hero() {
           >
             Zbulo Programet
           </button>
-          <button className="border-2 border-mikeDark text-mikeDark px-8 py-4 rounded-full font-bold text-lg hover:bg-mikeDark hover:text-white transition">
+          <a href="/kopshti#contactSection" className="border-2 border-mikeDark text-mikeDark px-8 py-4 rounded-full font-bold text-lg hover:bg-mikeDark hover:text-white transition">
             Na Kontaktoni
-          </button>
+          </a>
         </div>
       </div>
     </section>
