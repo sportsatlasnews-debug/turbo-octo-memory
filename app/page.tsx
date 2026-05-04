@@ -34,6 +34,10 @@ const handleSelection = (choice: "mike" | "zoterinjte" | "kurset" | "ekipi" | "k
     router.push(`https://shtepiaezoterinjve.com/`);
   } else if (choice === "ekipi") {
     router.push(`/bashkohu`); // Or a specific recruitment landing
+  } else if (choice === "kurset") {
+    router.push(`/kurset`); // Or a specific recruitment landing
+  } else if (choice === "kerkoni") {
+    router.push(`/kopshti#contactSection`); // Or a specific recruitment landing
   } else {
     // For the other 3 buttons that might not have pages yet
     console.log("Selected service:", choice);

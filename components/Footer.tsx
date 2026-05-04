@@ -6,9 +6,9 @@ const Footer = () => {
 
   const quickLinks = [
     { name: "Rreth Nesh", href: "/rreth-nesh" },
-    { name: "Galeria", href: "/galeria" },
-    { name: "Programet", href: "#" },
-    { name: "Shërbimet", href: "#" },
+    { name: "Galeria", href: "/galeri" },
+    { name: "Programet", href: "/kopshti#programiSipasMoshes" },
+    { name: "Shërbimet", href: "/sherbimet" },
     // { name: "Fletë Pune", href: "#" }
   ];
 
@@ -29,7 +29,7 @@ const Footer = () => {
             <div className="flex gap-4">
             {/* Facebook */}
             <a 
-                href="#" 
+                href="https://www.facebook.com/qendramiketirane/" target='_blank'
                 className="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center text-mikePurple hover:bg-mikePurple hover:text-white transition-all shadow-sm"
                 aria-label="Facebook"
             >
@@ -45,7 +45,7 @@ const Footer = () => {
 
             {/* Instagram */}
             <a 
-                href="#" 
+                href="https://www.instagram.com/qendra_mike/" target='_blank'
                 className="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center text-mikePurple hover:bg-mikePurple hover:text-white transition-all shadow-sm"
                 aria-label="Instagram"
             >
@@ -107,7 +107,7 @@ const Footer = () => {
                 07:30 – 17:00
               </p>
               <button className="w-full py-3 bg-mikePurple text-white rounded-2xl text-xs font-bold hover:bg-mikeDark transition-all shadow-lg shadow-purple-100">
-                REZERVO TAKIM
+                <a href="/kopshti#contactSection">REZERVO TAKIM</a>
               </button>
             </div>
           </div>
