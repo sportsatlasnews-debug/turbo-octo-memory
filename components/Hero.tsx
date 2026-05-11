@@ -13,9 +13,8 @@ export default function Hero() {
       <div className="relative z-10 text-center max-w-4xl px-6">
         <p className="text-mikePurple font-bold tracking-widest mb-4 uppercase">Qendra M.I.K.E.</p>
         <h1 className="text-5xl md:text-6xl font-bold text-mikeDark leading-tight mb-6">
-          Mirësevini në një botë <br /> 
-          të ngrohtë, <span className="text-mikePurple">të sigurt</span> <br />
-          dhe plot dashuri
+         Mirë se erdhët në <span className="text-mikePurple">M.I.K.E</span>
+         
         </h1>
         <p className="text-lg text-gray-700 mb-10 max-w-2xl mx-auto">
           Eksperiencë 27-vjeçare në kujdesin dhe edukimin e fëmijëve. Mbështetje, Informacion, Kujdes, Edukim, Përkushtim.

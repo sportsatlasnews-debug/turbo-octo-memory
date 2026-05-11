@@ -105,7 +105,7 @@ export default function RrethNesh() {
       
       <div className="space-y-6 text-gray-600 leading-relaxed">
         <p>
-          E themeluar në vitin 2009, Qendra M.I.K.E është një mjedis i ngrohtë, edukues dhe i sigurt për fëmijët nga <strong>6 muaj deri në 6 vjeç</strong>. Për më shumë se 15 vite, ne kemi krijuar një komunitet të besuar ku mirëqenia, siguria dhe zhvillimi i çdo fëmije është prioriteti ynë kryesor.
+          E themeluar në vitin 2009, Qendra M.I.K.E është një mjedis i ngrohtë, edukues dhe i sigurt për fëmijët nga <strong>6 muaj deri në 6 vjeç</strong>. Për më shumë se 17 vite, ne kemi krijuar një komunitet të besuar ku mirëqenia, siguria dhe zhvillimi i çdo fëmije është prioriteti ynë kryesor.
         </p>
         
         <p>

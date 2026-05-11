@@ -46,7 +46,7 @@ const DirectorSection = () => {
 
             <div className="mt-10">
               <h4 className="text-xl font-black text-mikeDark">Daklea Shtylla (Xinxo)</h4>
-              <p className="text-mikePurple font-medium">Themeluese & Drejtore Ekzekutive </p>
+              <p className="text-mikePurple font-medium">Themeluese & Drejtore Ekzekutive, eksperte për 35 vite në fushën e kujdesit për fëmijë </p>
             </div>
           </div>
 

@@ -99,18 +99,24 @@ const Footer = () => {
           </div>
 
           {/* Newsletter / CTA Column */}
-          <div>
-            <div className="bg-purple-50 p-8 rounded-[2.5rem] border border-purple-100">
-              <h4 className="text-mikePurple font-black mb-4">Vizitoni Qendrën</h4>
-              <p className="text-xs text-purple-800 leading-relaxed mb-6">
-                Orari: E hënë – E premte <br />
-                07:30 – 17:00
-              </p>
-              <button className="w-full py-3 bg-mikePurple text-white rounded-2xl text-xs font-bold hover:bg-mikeDark transition-all shadow-lg shadow-purple-100">
-                <a href="/kopshti#contactSection">REZERVO TAKIM</a>
-              </button>
-            </div>
-          </div>
+         <div>
+  <div className="bg-purple-50 p-8 rounded-[2.5rem] border border-purple-100">
+    <h4 className="text-mikePurple font-black mb-4">Vizitoni Qendrën</h4>
+
+    <p className="text-xs text-purple-800 leading-relaxed mb-4">
+      Orari: E hënë – E premte <br />
+      07:30 – 17:00
+    </p>
+
+    <p className="text-[11px] text-purple-700 italic mb-6">
+      Vizitat bëhen vetëm me rezervim
+    </p>
+
+    <button className="w-full py-3 bg-mikePurple text-white rounded-2xl text-xs font-bold hover:bg-mikeDark transition-all shadow-lg shadow-purple-100">
+      <a href="/kopshti#contactSection">REZERVO TAKIM</a>
+    </button>
+  </div>
+</div>
 
         </div>
 

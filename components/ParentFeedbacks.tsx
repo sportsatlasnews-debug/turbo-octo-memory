@@ -78,19 +78,26 @@ const ParentFeedbacks = () => {
 
         {/* Bottom Banner */}
         <div className="mt-20 bg-mikeDark rounded-[3rem] p-10 md:p-16 text-center text-white relative overflow-hidden">
-            <div className="absolute inset-0 bg-mikePurple/10 translate-y-1/2 rounded-full scale-150 blur-3xl" />
-            <h3 className="text-2xl md:text-3xl font-bold mb-6 relative z-10">
-                Bëhuni pjesë e komunitetit tonë sot
-            </h3>
-            <button
-            onClick={() => {
-              const el = document.getElementById("contactSection");
-              el?.scrollIntoView({ behavior: "smooth" });
-            }}
-            className="bg-mikePurple hover:bg-white hover:text-mikePurple text-white px-10 py-4 rounded-full font-black transition-all duration-300 relative z-10 shadow-xl">
-                REZERVO NJË VIZITË
-            </button>
-        </div>
+  <div className="absolute inset-0 bg-mikePurple/10 translate-y-1/2 rounded-full scale-150 blur-3xl" />
+
+  <h3 className="text-2xl md:text-3xl font-bold mb-4 relative z-10">
+    Bëhuni pjesë e komunitetit tonë sot.
+  </h3>
+
+  <p className="text-sm text-purple-100 mb-8 relative z-10">
+    Vizitat bëhen vetëm me rezervim, ora 17:00 – 18:00
+  </p>
+
+  <button
+    onClick={() => {
+      const el = document.getElementById("contactSection");
+      el?.scrollIntoView({ behavior: "smooth" });
+    }}
+    className="bg-mikePurple hover:bg-white hover:text-mikePurple text-white px-10 py-4 rounded-full font-black transition-all duration-300 relative z-10 shadow-xl"
+  >
+    REZERVO NJË VIZITË
+  </button>
+</div>
       </div>
     </section>
   );

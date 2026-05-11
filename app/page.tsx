@@ -13,6 +13,7 @@ import ParentFeedbacks from '@/components/ParentFeedbacks';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import EntryModal from '@/components/EntryModal';
+import AboutMission from '@/components/AboutMission';
 
 export default function Home() {
   // 1. Create the state for the modal
@@ -58,6 +59,7 @@ const handleSelection = (choice: "mike" | "zoterinjte" | "kurset" | "ekipi" | "k
       {/* We can reuse the Hero, but customize the text specifically for the Kindergarten */}
       <Hero />
       
+      
       {/* Detailed Info Section based on Pershkrimi documents */}
       <section className="py-16 px-10 bg-white">
         <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
@@ -75,7 +77,7 @@ const handleSelection = (choice: "mike" | "zoterinjte" | "kurset" | "ekipi" | "k
           </div>
         </div>
       </section>
-
+      <AboutMission />
       <Vision />
       <Schedule />
       <ServicesShowcase />
