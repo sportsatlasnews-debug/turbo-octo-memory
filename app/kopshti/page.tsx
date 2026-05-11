@@ -8,6 +8,7 @@ import ProgramAndEnvironment from '@/components/ProgramAndEnvironment';
 import ParentFeedbacks from '@/components/ParentFeedbacks';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import AboutMission from '@/components/AboutMission';
 
 export default function KopshtiPage() {
   return (
@@ -33,7 +34,7 @@ export default function KopshtiPage() {
           </div>
         </div>
       </section>
-
+      <AboutMission />
       <Vision />
       <Schedule />
       <ServicesShowcase />
