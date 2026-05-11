@@ -1,11 +1,23 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Navbar() {
   return (
     <nav className="flex items-center justify-between px-10 py-4 bg-white sticky top-0 z-50 shadow-sm">
       <div className="flex items-center gap-8">
-        {/* Replace with your logo image */}
-        <div className="w-12 h-12 bg-mikeYellow rounded-lg flex items-center justify-center font-bold text-white">M</div>
+        
+        {/* LOGO SECTION */}
+        <Link href="/" className="flex items-center">
+          <div className="relative w-12 h-12"> {/* Këtu mund të ndryshosh w-12 h-12 për përmasa të tjera */}
+            <Image 
+              src="/assets/logo.png" 
+              alt="Qendra MIKE Logo"
+              fill
+              className="object-contain"
+              priority // Siguron që logoja të ngarkohet e para
+            />
+          </div>
+        </Link>
         
         <div className="hidden md:flex space-x-6 text-mikeDark font-medium">
           <Link href="/" className="hover:text-mikePurple">Kreu</Link>
