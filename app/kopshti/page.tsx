@@ -34,7 +34,7 @@ export default function KopshtiPage() {
           </div>
         </div>
       </section>
-      <AboutMission />
+      {/* <AboutMission /> */}
       <Vision />
       <Schedule />
       <ServicesShowcase />

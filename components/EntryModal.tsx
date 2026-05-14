@@ -1,8 +1,7 @@
 "use client";
 import React from "react";
-import { X, GraduationCap, Users, Search, Lightbulb, Panda, ShieldUser  } from "lucide-react";
+import { X, GraduationCap, Users, Search, Lightbulb, ShieldUser } from "lucide-react";
 
-// 1. Define the specific allowed IDs
 type ServiceID = "mike" | "zoterinjte" | "kurset" | "ekipi" | "kerkoni" | "projektet";
 
 interface EntryModalProps {
@@ -11,145 +10,97 @@ interface EntryModalProps {
   onSelect: (choice: ServiceID) => void;
 }
 
+const PandaIcon = ({ size = 24, className = "" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M9 5c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2z" />
+    <path d="M19 5c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2z" />
+    <path d="M12 10c-4.4 0-8 3.6-8 8v2h16v-2c0-4.4-3.6-8-8-8z" />
+    <circle cx="9" cy="15" r="1" />
+    <circle cx="15" cy="15" r="1" />
+    <path d="M12 17v1" />
+  </svg>
+);
+
 export default function EntryModal({ isOpen, onClose, onSelect }: EntryModalProps) {
   if (!isOpen) return null;
 
-  // 2. Explicitly type the array so TypeScript knows these IDs match ServiceID
   const services: { id: ServiceID; title: string; desc: string; icon: React.ReactNode; btnText: string }[] = [
-    {
-      id: "mike",
-      title: "Qendra M.I.K.E Kopsht / Çerdhe",
-      desc: "Program edukativ dhe kujdes ditor",
-      icon: <Panda size={40} className="text-gray-600" />,
-      btnText: "Hyr"
-    },
-    {
-      id: "zoterinjte",
-      title: "Shtëpia e Zotërinjve",
-      desc: "Shërbime kujdesi për të moshuarit.",
-      icon: <ShieldUser  size={40} className="text-gray-600" />,
-      btnText: "Hyr"
-    },
-    {
-      id: "kurset",
-      title: "Kurset Profesionale",
-      desc: "Trajnime për babysitter dhe kujdestarë për të moshuar",
-      icon: <GraduationCap size={40} className="text-gray-600" />,
-      btnText: "Shiko kurset"
-    },
-    {
-      id: "ekipi",
-      title: "Bashkohu me ekipin tonë",
-      desc: "Apliko për t'u bërë pjesë e stafit ose si vullnetar.",
-      icon: <Users size={40} className="text-gray-600" />,
-      btnText: "Apliko tani"
-    },
-    {
-      id: "kerkoni",
-      title: "Kërkoj punonjës",
-      desc: "Publiko kërkesën për staf sipas nevojës.",
-      icon: <Search size={40} className="text-gray-600" />,
-      btnText: "Shiko më shumë"
-    },
-    {
-      id: "projektet",
-      title: "Projektet e zhvilluara nga M.I.K.E",
-      desc: "Zbulo projektet dhe aktivitetet tona në komunitet.",
-      icon: <Lightbulb size={40} className="text-gray-600" />,
-      btnText: "Shiko projektet"
-    }
+    { id: "mike", title: "Kopsht / Çerdhe", desc: "Program edukativ", icon: <PandaIcon size={28} className="text-gray-600" />, btnText: "Hyr" },
+    { id: "zoterinjte", title: "Shtëpia e Zotërinjve", desc: "Kujdes për moshën e tretë", icon: <ShieldUser size={28} className="text-gray-600" />, btnText: "Hyr" },
+    { id: "kurset", title: "Kurset Profesionale", desc: "Trajnime Babysitter", icon: <GraduationCap size={28} className="text-gray-600" />, btnText: "Kurset" },
+    { id: "ekipi", title: "Bashkohu me ne", desc: "Staf ose vullnetar", icon: <Users size={28} className="text-gray-600" />, btnText: "Apliko" },
+    { id: "kerkoni", title: "Kërkoj punonjës", desc: "Publiko kërkesë", icon: <Search size={28} className="text-gray-600" />, btnText: "Më shumë" },
+    { id: "projektet", title: "Projektet MIKE", desc: "Aktivitetet në komunitet", icon: <Lightbulb size={28} className="text-gray-600" />, btnText: "Projektet" }
   ];
 
-return (
-  <div className="fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm overflow-y-auto">
-    {/* This wrapper ensures centering while allowing the height to expand */}
-    <div className="min-h-full flex items-center justify-center p-4">
-      <div className="bg-white w-full max-w-4xl rounded-xl shadow-xl overflow-hidden relative my-8 animate-in fade-in zoom-in duration-300">
+  return (
+    <div className="fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm flex items-center justify-center p-2 md:p-4">
+      {/* max-h-[95vh] dhe overflow-y-auto per mobile */}
+      <div className="bg-white w-full max-w-6xl max-h-[95vh] md:max-h-none overflow-y-auto md:overflow-visible rounded-[2rem] shadow-2xl relative animate-in fade-in zoom-in duration-300">
         
-        {/* Close Button */}
-        <button 
-          onClick={onClose}
-          className="absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-full transition text-gray-400 z-10"
-        >
-          <X size={20} />
+        <button onClick={onClose} className="absolute top-5 right-6 p-2 hover:bg-gray-100 rounded-full transition text-gray-400 z-50 bg-white/80">
+          <X size={22} />
         </button>
 
-        <div className="p-6 md:p-10">
-          <h2 className="text-2xl font-medium text-center text-gray-800 mb-8">Zgjidh shërbimin që kërkon</h2>
+        <div className="p-5 md:p-10">
+          {/* HEADER ME PARAGRAFIN E PLOTE */}
+          <div className="mb-6 md:mb-8 border-b border-gray-100 pb-6 md:pb-8 text-center md:text-left">
+            <h2 className="text-xl md:text-3xl font-black text-mikePurple mb-4 md:mb-6 text-center italic uppercase tracking-tighter">
+              Mirë se erdhët në M.I.K.E
+            </h2>
+            
+            <div className="md:columns-2 gap-10 space-y-3 md:space-y-0 text-gray-600 leading-snug text-[11px] md:text-[13px] text-justify">
+              <p>
+                <span className="text-mikeDark font-bold italic">Qendra M.I.K.E</span> – Mbështetje, Informacion, Kujdes, Edukim – është një organizatë jofitimprurëse e themeluar në vitin 2007[cite: 1, 2]. Ajo ofron shërbime në mbështetje të fëmijëve, të rinjve, grave dhe të moshuarve[cite: 2]. Misioni i saj është të kontribuojë në edukimin dhe mirëqenien sociale përmes kujdesit të vazhdueshme[cite: 2].
+              </p>
+              <p>
+                Qendra punon për fuqizimin personal dhe ekonomik të individëve, me fokus te grupet e margjinalizuara[cite: 2]. Aktivitetet përfshijnë shërbime ditore, informim dhe trajnime[cite: 2]. M.I.K.E synon të krijojë mundësi të barabarta dhe të përmirësojë cilësinë e jetës në komunitet[cite: 2].
+              </p>
+              <p className="bg-mikePurple/5 p-3 rounded-xl border-l-4 border-mikePurple italic">
+                Që prej vitit 2024, Qendrës M.I.K.E i është njohur statusi i <span className="font-bold text-mikePurple">NDËRMARRJES SOCIALE</span>, duke forcuar rolin e saj në zhvillimin e komunitetit[cite: 2].
+              </p>
+            </div>
+          </div>
 
-          {/* Grid: 1 column on mobile, 2 on tablets, 3 on desktop */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                       {services.map((service) => (
+          <div className="text-center mb-6">
+            <span className="px-4 py-1 bg-mikeDark text-white rounded-full text-[9px] font-black uppercase tracking-[0.15em]">
+              Zgjidh shërbimin që kërkon
+            </span>
+          </div>
 
+          {/* GRID: 1 kolone ne Mobile, 6 kolona ne Desktop */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
+            {services.map((service) => (
               <div
-
                 key={service.id}
-
-                className="flex flex-col items-center text-center p-6 bg-white border border-gray-100 rounded-lg shadow-sm hover:shadow-md transition-shadow"
-
+                className="group flex flex-row lg:flex-col items-center text-left lg:text-center p-4 bg-white border border-gray-100 rounded-[1.2rem] lg:rounded-[1.8rem] hover:border-mikePurple/30 hover:shadow-xl transition-all duration-300"
               >
-
-                {/* Icon Container */}
-
-                <div className="h-16 flex items-center justify-center mb-4">
-
-                  {typeof service.icon === "string" ? (
-
-                    <span className="text-4xl">{service.icon}</span>
-
-                  ) : (
-
-                    service.icon
-
-                  )}
-
+                {/* Ikona ne te majte ne mobile, lart ne desktop */}
+                <div className="h-10 w-10 lg:w-auto flex items-center justify-center mb-0 lg:mb-2 mr-4 lg:mr-0 transform group-hover:scale-110 transition-transform">
+                  {service.icon}
                 </div>
 
-
-
-                {/* Content */}
-
-                <h3 className="text-base font-bold text-gray-800 mb-2 min-h-[3rem] flex items-center justify-center">
-
-                  {service.title}
-
-                </h3>
-
-               
-
-                <div className="w-12 h-[1px] bg-gray-200 mb-3" />
-
-               
-
-                <p className="text-xs text-gray-500 mb-6 leading-relaxed flex-grow">
-
-                  {service.desc}
-
-                </p>
-
-
-
-                {/* Button */}
+                <div className="flex-grow">
+                  <h3 className="text-[11px] font-black text-mikeDark mb-1 lg:h-8 flex items-center lg:justify-center leading-none uppercase italic">
+                    {service.title}
+                  </h3>
+                  
+                  <p className="text-[9px] text-gray-400 mb-0 lg:mb-4 leading-tight lg:min-h-[24px] font-medium hidden md:block">
+                    {service.desc}
+                  </p>
+                </div>
 
                 <button
-
                   onClick={() => onSelect(service.id)}
-
-                  className="w-full py-2 px-4 bg-mikePurple text-white text-sm font-medium rounded-md hover:bg-opacity-90 transition-colors"
-
+                  className="ml-auto lg:ml-0 w-24 lg:w-full py-2 lg:py-2.5 bg-mikePurple text-white text-[9px] font-black uppercase tracking-widest rounded-lg hover:bg-mikeDark transition-all active:scale-95 shadow-md shadow-purple-50"
                 >
-
                   {service.btnText}
-
                 </button>
-
               </div>
-
             ))}
           </div>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
 }

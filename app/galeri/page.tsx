@@ -1,7 +1,7 @@
 "use client";
 import Image from 'next/image';
 import photoData from "@/data/photos.json";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react"; // Shtova useEffect
 import Navbar from "@/components/Navbar";
 import Footer from '@/components/Footer';
 import { Camera, Calendar, History, Sparkles, Lightbulb } from "lucide-react";
@@ -11,6 +11,13 @@ type Category = "Gjithçka" | "Mike ndër vite" | "15 vjetori i Mike" | "Aktivit
 const GalleryPage = () => {
   const [activeTab, setActiveTab] = useState<Category>("Gjithçka");
   const photos = photoData;
+
+  // LOGJIKA E REDIRECT: Kontrollon nese URL ka #projektet
+  useEffect(() => {
+    if (window.location.hash === "#projektet") {
+      setActiveTab("Projekte");
+    }
+  }, []);
 
   const categories = [
     { name: "Gjithçka", icon: <Camera size={18} /> },
@@ -57,7 +64,8 @@ const GalleryPage = () => {
         </div>
       </section>
 
-      <section className="sticky top-[70px] z-30 bg-white/80 backdrop-blur-md py-6 border-b border-gray-100">
+      {/* Shtova ID ketu qe Link-u te beje scroll direkt tek butonat */}
+      <section id="projektet" className="sticky top-[70px] z-30 bg-white/80 backdrop-blur-md py-6 border-b border-gray-100">
         <div className="container mx-auto px-6">
           <div className="flex flex-wrap justify-center gap-3">
             {categories.map((cat) => (
@@ -79,7 +87,6 @@ const GalleryPage = () => {
 
       <section className="py-16 container mx-auto px-6">
         {activeTab === "Projekte" ? (
-          /* TABELA E PROJEKTEVE */
           <div className="overflow-x-auto rounded-[2rem] shadow-xl border border-gray-100 bg-white">
             <table className="w-full text-left border-collapse">
               <thead>
@@ -103,7 +110,7 @@ const GalleryPage = () => {
             </table>
           </div>
         ) : (
-          /* GRID E FOTOVE (Për kategoritë e tjera) */
+          /* Pjesa e fotove mbetet njesoj... */
           <>
             <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
               {(activeTab === "Gjithçka" ? photos : filteredPhotos).map((photo, index) => (
@@ -121,11 +128,6 @@ const GalleryPage = () => {
                 </div>
               ))}
             </div>
-            {(activeTab !== "Gjithçka" && filteredPhotos.length === 0) && (
-              <div className="text-center py-20">
-                <p className="text-gray-400 italic">Nuk u gjet asnjë foto në këtë kategori.</p>
-              </div>
-            )}
           </>
         )}
       </section>
