@@ -51,13 +51,13 @@ export default function EntryModal({ isOpen, onClose, onSelect }: EntryModalProp
             
             <div className="md:columns-2 gap-10 space-y-3 md:space-y-0 text-gray-600 leading-snug text-[11px] md:text-[13px] text-justify">
               <p>
-                <span className="text-mikeDark font-bold italic">Qendra M.I.K.E</span> – Mbështetje, Informacion, Kujdes, Edukim – është një organizatë jofitimprurëse e themeluar në vitin 2007[cite: 1, 2]. Ajo ofron shërbime në mbështetje të fëmijëve, të rinjve, grave dhe të moshuarve[cite: 2]. Misioni i saj është të kontribuojë në edukimin dhe mirëqenien sociale përmes kujdesit të vazhdueshme[cite: 2].
+                <span className="text-mikeDark font-bold italic">Qendra M.I.K.E</span> – Mbështetje, Informacion, Kujdes, Edukim – është një organizatë jofitimprurëse e themeluar në vitin 2007. Ajo ofron shërbime në mbështetje të fëmijëve, të rinjve, grave dhe të moshuarve. Misioni i saj është të kontribuojë në edukimin dhe mirëqenien sociale përmes kujdesit të vazhdueshme.
               </p>
               <p>
-                Qendra punon për fuqizimin personal dhe ekonomik të individëve, me fokus te grupet e margjinalizuara[cite: 2]. Aktivitetet përfshijnë shërbime ditore, informim dhe trajnime[cite: 2]. M.I.K.E synon të krijojë mundësi të barabarta dhe të përmirësojë cilësinë e jetës në komunitet[cite: 2].
+                Qendra punon për fuqizimin personal dhe ekonomik të individëve, me fokus te grupet e margjinalizuara. Aktivitetet përfshijnë shërbime ditore, informim dhe trajnime. M.I.K.E synon të krijojë mundësi të barabarta dhe të përmirësojë cilësinë e jetës në komunitet.
               </p>
               <p className="bg-mikePurple/5 p-3 rounded-xl border-l-4 border-mikePurple italic">
-                Që prej vitit 2024, Qendrës M.I.K.E i është njohur statusi i <span className="font-bold text-mikePurple">NDËRMARRJES SOCIALE</span>, duke forcuar rolin e saj në zhvillimin e komunitetit[cite: 2].
+                Që prej vitit 2024, Qendrës M.I.K.E i është njohur statusi i <span className="font-bold text-mikePurple">NDËRMARRJES SOCIALE</span>, duke forcuar rolin e saj në zhvillimin e komunitetit.
               </p>
             </div>
           </div>
