@@ -36,7 +36,7 @@ export default function Vision() {
         />
         {/* Floating badge to match Image_05152b */}
         <div className="absolute -bottom-6 -left-6 bg-mikePurple text-white p-8 rounded-2xl shadow-lg hidden lg:block">
-          <p className="text-3xl font-bold">27+</p>
+          <p className="text-3xl font-bold">17+</p>
           <p className="text-sm">Vite Eksperiencë</p>
         </div>
       </div>

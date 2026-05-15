@@ -17,7 +17,7 @@ export default function Hero() {
          
         </h1>
         <p className="text-lg text-gray-700 mb-10 max-w-2xl mx-auto">
-          Eksperiencë 27-vjeçare në kujdesin dhe edukimin e fëmijëve. Mbështetje, Informacion, Kujdes, Edukim, Përkushtim.
+          Eksperiencë 17-vjeçare në kujdesin dhe edukimin e fëmijëve. Mbështetje, Informacion, Kujdes, Edukim, Përkushtim.
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
