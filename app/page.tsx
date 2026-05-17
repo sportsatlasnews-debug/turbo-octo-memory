@@ -39,7 +39,7 @@ const handleSelection = (choice: "mike" | "zoterinjte" | "kurset" | "ekipi" | "k
   } else if (choice === "kerkoni") {
     router.push(`/kontakt`); // Or a specific recruitment landing
   } else if (choice === "projektet") {
-    router.push(`/galeri#projektet`); // Or a specific recruitment landing
+    router.push(`/projektet`); // Or a specific recruitment landing
   } else {
     // For the other 3 buttons that might not have pages yet
     console.log("Selected service:", choice);
