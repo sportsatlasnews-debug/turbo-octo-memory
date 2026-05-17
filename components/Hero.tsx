@@ -13,8 +13,9 @@ export default function Hero() {
       <div className="relative z-10 text-center max-w-4xl px-6">
         <p className="text-mikePurple font-bold tracking-widest mb-4 uppercase">Qendra M.I.K.E.</p>
         <h1 className="text-5xl md:text-6xl font-bold text-mikeDark leading-tight mb-6">
-         Mirë se erdhët në <span className="text-mikePurple">M.I.K.E</span>
-         
+          Mirësevini në një botë <br /> 
+          të ngrohtë, <span className="text-mikePurple">të sigurt</span> <br />
+          dhe plot dashuri
         </h1>
         <p className="text-lg text-gray-700 mb-10 max-w-2xl mx-auto">
           Eksperiencë 17-vjeçare në kujdesin dhe edukimin e fëmijëve. Mbështetje, Informacion, Kujdes, Edukim, Përkushtim.
@@ -23,7 +24,7 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button
             onClick={() => {
-              const el = document.getElementById("programiSipasMoshes");
+              const el = document.getElementById("rutinaDitore");
               el?.scrollIntoView({ behavior: "smooth" });
             }}
             className="bg-mikePurple text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-lg transition"
