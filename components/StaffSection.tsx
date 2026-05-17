@@ -5,37 +5,37 @@ const StaffSection = () => {
     {
       name: "Blerta Caka",
       position: "Edukatore",
-      image: "/images/staff/Blerta Caka.jpg" // Zëvendëso me path-in real
+      image: "/images/staff/BlertaCaka.JPG" // Zëvendëso me path-in real
     },
     {
       name: "Enkelejda Shehaj",
       position: "Edukatore",
-      image: "/images/staff/Enkelejda Shehaj.jpg"
+      image: "/images/staff/EnkelejdaShehaj.JPG"
     },
     {
       name: "Ervehe Musabelliu",
       position: "Edukatore",
-      image: "/images/staff/Ervehe Musabelliu.jpg"
+      image: "/images/staff/ErveheMusabelliu.JPG"
     },
     {
       name: "Etleva Myrteza",
       position: "Edukatore",
-      image: "/images/staff/Etleva Myrteza.jpg"
+      image: "/images/staff/EtlevaMyrteza.JPG"
     },
     {
       name: "Migena Haznedari",
       position: "Edukatore",
-      image: "/images/staff/Migena Haznedari.jpg"
+      image: "/images/staff/MigenaHaznedari.JPG"
     },
     {
       name: "Rudina Lala",
       position: "Edukatore",
-      image: "/images/staff/Rudina Lala.jpg"
+      image: "/images/staff/RudinaLala.JPG"
     },
     {
       name: "Shqiponja Braka",
       position: "Edukatore",
-      image: "/images/staff/Shqiponja Braka.jpg"
+      image: "/images/staff/ShqiponjaBraka.JPG"
     }
   ];
 
