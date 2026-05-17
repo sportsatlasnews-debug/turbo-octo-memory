@@ -44,7 +44,7 @@ export default function EntryModal({ isOpen, onClose, onSelect }: EntryModalProp
 
         <div className="p-5 md:p-10">
           {/* HEADER ME PARAGRAFIN E PLOTE */}
-          <div className="mb-6 md:mb-8 border-b border-gray-100 pb-6 md:pb-8 text-center md:text-left">
+          <div className="mb-2 md:mb-2 border-b border-gray-100 pb-2 md:pb-2 text-center md:text-left">
             <h2 className="text-xl md:text-3xl font-black text-mikePurple mb-4 md:mb-6 text-center italic uppercase tracking-tighter">
               Mirë se erdhët në M.I.K.E
             </h2>
@@ -62,7 +62,7 @@ export default function EntryModal({ isOpen, onClose, onSelect }: EntryModalProp
             </div>
           </div>
 
-          <div className="text-center mb-6">
+          <div className="text-center mb-2">
             <span className="px-4 py-1 bg-mikeDark text-white rounded-full text-[9px] font-black uppercase tracking-[0.15em]">
               Zgjidh shërbimin që kërkon
             </span>

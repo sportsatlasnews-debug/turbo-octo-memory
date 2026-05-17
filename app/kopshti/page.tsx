@@ -6,7 +6,6 @@ import ServicesShowcase from '@/components/ServicesShowcase';
 import DirectorSection from '@/components/DirectorSection';
 import ProgramAndEnvironment from '@/components/ProgramAndEnvironment';
 import ParentFeedbacks from '@/components/ParentFeedbacks';
-import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import AboutMission from '@/components/AboutMission';
 
@@ -41,9 +40,6 @@ export default function KopshtiPage() {
       <DirectorSection />
       <ProgramAndEnvironment />
       <ParentFeedbacks />
-      
-      <ContactSection />
-      
      <Footer />
     </main>
   );

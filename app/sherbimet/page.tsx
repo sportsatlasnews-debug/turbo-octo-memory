@@ -112,7 +112,7 @@ export default function Sherbimet() {
         <div className="container mx-auto px-6 text-center bg-white p-16 rounded-[4rem] shadow-sm border border-gray-100">
            <h2 className="text-3xl md:text-5xl font-black text-mikeDark mb-8">Gati për të nisur udhëtimin?</h2>
            <p className="text-gray-500 mb-10 max-w-xl mx-auto">Regjistrimet janë të hapura gjatë gjithë vitit, por vendet janë të limituara për të siguruar vëmendje maksimale.</p>
-           <a href="/kopshti#contactSection" className="bg-mikePurple text-white px-12 py-5 rounded-full font-black hover:bg-mikeDark transition-all shadow-xl shadow-purple-100">
+           <a href="/kontakt" className="bg-mikePurple text-white px-12 py-5 rounded-full font-black hover:bg-mikeDark transition-all shadow-xl shadow-purple-100">
              REZERVO NJË KONSULTË FALAS
            </a>
         </div>

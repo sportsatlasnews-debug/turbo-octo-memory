@@ -113,7 +113,7 @@ const Footer = () => {
     </p>
 
     <button className="w-full py-3 bg-mikePurple text-white rounded-2xl text-xs font-bold hover:bg-mikeDark transition-all shadow-lg shadow-purple-100">
-      <a href="/kopshti#contactSection">REZERVO TAKIM</a>
+      <a href="/kontakt">REZERVO TAKIM</a>
     </button>
   </div>
 </div>

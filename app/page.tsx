@@ -10,7 +10,6 @@ import ServicesShowcase from '@/components/ServicesShowcase';
 import DirectorSection from '@/components/DirectorSection';
 import ProgramAndEnvironment from '@/components/ProgramAndEnvironment';
 import ParentFeedbacks from '@/components/ParentFeedbacks';
-import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import EntryModal from '@/components/EntryModal';
 import AboutMission from '@/components/AboutMission';
@@ -38,7 +37,7 @@ const handleSelection = (choice: "mike" | "zoterinjte" | "kurset" | "ekipi" | "k
   } else if (choice === "kurset") {
     router.push(`/kurset`); // Or a specific recruitment landing
   } else if (choice === "kerkoni") {
-    router.push(`/kopshti#contactSection`); // Or a specific recruitment landing
+    router.push(`/kontakt`); // Or a specific recruitment landing
   } else if (choice === "projektet") {
     router.push(`/galeri#projektet`); // Or a specific recruitment landing
   } else {
@@ -86,9 +85,6 @@ const handleSelection = (choice: "mike" | "zoterinjte" | "kurset" | "ekipi" | "k
       <DirectorSection />
       <ProgramAndEnvironment />
       <ParentFeedbacks />
-      
-      <ContactSection />
-      
      <Footer />
     </main>
   );
