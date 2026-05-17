@@ -7,6 +7,7 @@ const Footer = () => {
   const quickLinks = [
     { name: "Rreth Nesh", href: "/rreth-nesh" },
     { name: "Galeria", href: "/galeri" },
+    { name: "Stafi", href: "/stafi" },
     { name: "Programet", href: "/kopshti#programiSipasMoshes" },
     { name: "Shërbimet", href: "/sherbimet" },
     // { name: "Fletë Pune", href: "#" }

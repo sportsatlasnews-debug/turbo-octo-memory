@@ -40,7 +40,7 @@ const StaffSection = () => {
   ];
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-white" id='staff'>
       <div className="container mx-auto px-6">
         
         {/* Header */}

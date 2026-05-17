@@ -23,6 +23,7 @@ export default function Navbar() {
           <Link href="/" className="hover:text-mikePurple">Kreu</Link>
           <Link href="/rreth-nesh" className="hover:text-mikePurple">Rreth Nesh</Link>
           <Link href="/sherbimet" className="hover:text-mikePurple">Shërbimet</Link>
+          <Link href="/stafi" className="hover:text-mikePurple">Stafi</Link>
           <Link href="/galeri" className="hover:text-mikePurple">Galeri</Link>
           <Link href="/kontakt" className="hover:text-mikePurple">Kontakt</Link>
         </div>
