@@ -49,7 +49,7 @@ export default function EntryModal({ isOpen, onClose, onSelect }: EntryModalProp
               Mirë se erdhët në M.I.K.E
             </h2>
             
-            <div className="md:columns-2 gap-10 space-y-3 md:space-y-0 text-gray-600 leading-snug text-[11px] md:text-[13px] text-justify">
+            <div className="md:columns-1 gap-10 space-y-3 md:space-y-0 text-gray-600 leading-snug text-[11px] md:text-[13px] text-justify">
               <p>
                 <span className="text-mikeDark font-bold italic">Qendra M.I.K.E</span> – Mbështetje, Informacion, Kujdes, Edukim – është një organizatë jofitimprurëse e themeluar në vitin 2007. Ajo ofron shërbime në mbështetje të fëmijëve, të rinjve, grave dhe të moshuarve. Misioni i saj është të kontribuojë në edukimin dhe mirëqenien sociale përmes kujdesit të vazhdueshme.
               </p>
@@ -69,7 +69,7 @@ export default function EntryModal({ isOpen, onClose, onSelect }: EntryModalProp
           </div>
 
           {/* GRID: 1 kolone ne Mobile, 6 kolona ne Desktop */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-1">
             {services.map((service) => (
               <div
                 key={service.id}
