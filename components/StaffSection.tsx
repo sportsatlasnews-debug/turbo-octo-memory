@@ -1,43 +1,57 @@
+"use client";
 import React from 'react';
+import { useLanguage } from '@/context/LanguageContext';
 
 const StaffSection = () => {
-  const staff = [
-    {
-      name: "Blerta Caka",
+  const { language } = useLanguage();
+
+  const translations = {
+    sq: {
+      sub: "EKIPI YNË",
+      title: "Mësueset tona të përkushtuara",
+      desc: "Një grup profesional mësuesish dhe edukatorësh që punojnë medashuri për rritjen dhe edukimin e fëmijës tuaj.",
+      badge: "Të gjitha mësueset tona janë të certifikuara dhe me arsim të lartë.",
       position: "Edukatore",
-      image: "/images/staff/BlertaCaka.JPG" // Zëvendëso me path-in real
+      staffNames: [
+        "Blerta Caka",
+        "Enkelejda Shehaj",
+        "Ervehe Musabelliu",
+        "Etleva Myrteza",
+        "Migena Haznedari",
+        "Rudina Lala",
+        "Shqiponja Braka"
+      ]
     },
-    {
-      name: "Enkelejda Shehaj",
-      position: "Edukatore",
-      image: "/images/staff/EnkelejdaShehaj.JPG"
-    },
-    {
-      name: "Ervehe Musabelliu",
-      position: "Edukatore",
-      image: "/images/staff/ErveheMusabelliu.JPG"
-    },
-    {
-      name: "Etleva Myrteza",
-      position: "Edukatore",
-      image: "/images/staff/EtlevaMyrteza.JPG"
-    },
-    {
-      name: "Migena Haznedari",
-      position: "Edukatore",
-      image: "/images/staff/MigenaHaznedari.JPG"
-    },
-    {
-      name: "Rudina Lala",
-      position: "Edukatore",
-      image: "/images/staff/RudinaLala.JPG"
-    },
-    {
-      name: "Shqiponja Braka",
-      position: "Edukatore",
-      image: "/images/staff/ShqiponjaBraka.JPG"
+    en: {
+      sub: "OUR TEAM",
+      title: "Our Dedicated Teachers",
+      desc: "A professional group of educators and teachers who work with love and care for the growth and education of your child.",
+      badge: "All of our teachers are fully certified and hold higher education degrees.",
+      position: "Teacher",
+      staffNames: [
+        "Blerta Caka",
+        "Enkelejda Shehaj",
+        "Ervehe Musabelliu",
+        "Etleva Myrteza",
+        "Migena Haznedari",
+        "Rudina Lala",
+        "Shqiponja Braka"
+      ]
     }
-  ];
+  };
+
+  const t = translations[language];
+
+  // Gjenerimi i strukturës së stafit me path-et përkatëse të imazheve
+  const staff = t.staffNames.map((name) => {
+    // Heqim hapësirat për të përputhur saktë emrat e skedarëve JPG
+    const imageName = name.replace(/\s+/g, '');
+    return {
+      name,
+      position: t.position,
+      image: `/images/staff/${imageName}.JPG`
+    };
+  });
 
   return (
     <section className="py-24 bg-white" id='staff'>
@@ -45,10 +59,10 @@ const StaffSection = () => {
         
         {/* Header */}
         <div className="text-center mb-16">
-          <span className="text-mikePurple font-bold uppercase tracking-widest text-xs">EKIPTI YNË</span>
-          <h2 className="text-3xl md:text-5xl font-black text-mikeDark mt-2">Mësueset tona të përkushtuara</h2>
+          <span className="text-mikePurple font-bold uppercase tracking-widest text-xs">{t.sub}</span>
+          <h2 className="text-3xl md:text-5xl font-black text-mikeDark mt-2">{t.title}</h2>
           <p className="text-gray-500 mt-4 max-w-2xl mx-auto">
-            Një grup profesional mësuesish dhe edukatorësh që punojnë me dashuri për rritjen dhe edukimin e fëmijës tuaj.
+            {t.desc}
           </p>
         </div>
 
@@ -57,10 +71,10 @@ const StaffSection = () => {
           {staff.map((member, index) => (
             <div 
               key={index} 
-              className={`group relative `} // Centron mësuesen e fundit në desktop
+              className="group relative"
             >
               <div className="relative overflow-hidden rounded-[2.5rem] bg-gray-100 aspect-[4/5] shadow-sm group-hover:shadow-xl transition-all duration-500">
-                {/* Image Placeholder */}
+                {/* Image */}
                 <img 
                   src={member.image} 
                   alt={member.name}
@@ -81,10 +95,10 @@ const StaffSection = () => {
 
         {/* Professionalism Badge */}
         <div className="mt-20 flex justify-center">
-            <div className="bg-purple-50 px-8 py-4 rounded-full border border-purple-100 flex items-center gap-3">
-                <div className="w-2 h-2 bg-mikePurple rounded-full animate-ping" />
-                <p className="text-mikePurple font-bold text-sm">Të gjitha mësueset tona janë të certifikuara dhe me arsim të lartë.</p>
-            </div>
+          <div className="bg-purple-50 px-8 py-4 rounded-full border border-purple-100 flex items-center gap-3">
+            <div className="w-2 h-2 bg-mikePurple rounded-full animate-ping" />
+            <p className="text-mikePurple font-bold text-sm">{t.badge}</p>
+          </div>
         </div>
 
       </div>

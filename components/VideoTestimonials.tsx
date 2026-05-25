@@ -1,50 +1,74 @@
 "use client";
 import React, { useState } from 'react';
 import { Play, X } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 import videoData from '@/data/videos.json';
 
 const VideoTestimonials = () => {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+  const { language } = useLanguage();
+
+  const translations = {
+    sq: {
+      sub: "VIDEO DËSHMI",
+      title: "Ndiqni eksperiencën e tyre",
+      fallbackError: "Shfletuesi juaj nuk e mbështet këtë video."
+    },
+    en: {
+      sub: "VIDEO TESTIMONIALS",
+      title: "Watch Their Experience",
+      fallbackError: "Your browser does not support the video tag."
+    }
+  };
+
+  const t = translations[language];
 
   return (
     <section className="py-24 bg-gray-50">
       <div className="container mx-auto px-6">
         
+        {/* Header */}
         <div className="text-center mb-16">
-          <span className="text-mikePurple font-bold uppercase tracking-widest text-xs">VIDEO DËSHMI</span>
-          <h2 className="text-3xl md:text-5xl font-black text-mikeDark mt-2">Ndiqni eksperiencën e tyre</h2>
+          <span className="text-mikePurple font-bold uppercase tracking-widest text-xs">{t.sub}</span>
+          <h2 className="text-3xl md:text-5xl font-black text-mikeDark mt-2">{t.title}</h2>
         </div>
 
         {/* Dynamic Video Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {videoData.map((video) => (
-            <div 
-              key={video.id}
-              onClick={() => setSelectedVideo(video.url)}
-              className={`relative group cursor-pointer overflow-hidden rounded-[2.5rem] bg-mikeDark 
-                ${video.type === 'portrait' ? 'aspect-[9/16] row-span-2' : 'aspect-video'}`}
-            >
-              {/* Video Preview (Autoplay muted loop on hover) */}
-              <video 
-                className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
-                muted
-                onMouseOver={e => e.currentTarget.play()}
-                onMouseOut={e => { e.currentTarget.pause(); e.currentTarget.currentTime = 0; }}
-              >
-                <source src={video.url} type="video/mp4" />
-              </video>
+          {videoData.map((video) => {
+            // Kontrollon për titull specifik sipas gjuhës në JSON, ose përdor title si fallback
+            video.title
 
-              {/* Overlay Content */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white group-hover:bg-mikePurple group-hover:scale-110 transition-all duration-300">
-                  <Play fill="white" size={28} />
+            return (
+              <div 
+                key={video.id}
+                onClick={() => setSelectedVideo(video.url)}
+                className={`relative group cursor-pointer overflow-hidden rounded-[2.5rem] bg-mikeDark 
+                  ${video.type === 'portrait' ? 'aspect-[9/16] row-span-2' : 'aspect-video'}`}
+              >
+                {/* Video Preview (Autoplay muted loop on hover) */}
+                <video 
+                  className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                  muted
+                  playsInline
+                  onMouseOver={e => e.currentTarget.play()}
+                  onMouseOut={e => { e.currentTarget.pause(); e.currentTarget.currentTime = 0; }}
+                >
+                  <source src={video.url} type="video/mp4" />
+                </video>
+
+                {/* Overlay Content */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white group-hover:bg-mikePurple group-hover:scale-110 transition-all duration-300">
+                    <Play fill="white" size={28} />
+                  </div>
+                  <p className="mt-4 text-white font-bold px-4 text-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    {video.title}
+                  </p>
                 </div>
-                <p className="mt-4 text-white font-bold px-4 text-center opacity-0 group-hover:opacity-100 transition-opacity">
-                  {video.title}
-                </p>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
@@ -65,7 +89,7 @@ const VideoTestimonials = () => {
               className="max-w-full max-h-full rounded-2xl shadow-2xl"
             >
               <source src={selectedVideo} type="video/mp4" />
-              Your browser does not support the video tag.
+              {t.fallbackError}
             </video>
           </div>
         </div>

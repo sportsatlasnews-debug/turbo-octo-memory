@@ -1,28 +1,69 @@
 "use client";
 import React from 'react';
 import { Star, Quote } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 const ParentFeedbacks = () => {
-  const feedbacks = [
-    {
-      parent: "Anisa B.",
-      role: "Prind i grupmoshës 3-6 vjeç",
-      text: "Një ambient jashtëzakonisht i ngrohtë dhe i sigurt. Vajza ime vjen me dëshirë çdo ditë dhe programi me Anglisht e Kung-Fu i ka dhënë shumë vetëbesim.",
-      rating: 5
+  const { language } = useLanguage();
+
+  const translations = {
+    sq: {
+      sub: "PËRSHTYPYET",
+      title: "Çfarë thonë prindërit",
+      bannerTitle: "Bëhuni pjesë e komunitetit tonë sot.",
+      bannerDesc: "Vizitat bëhen vetëm me rezervim, ora 17:00 – 18:00",
+      bannerBtn: "REZERVO NJË VIZITË",
+      feedbacks: [
+        {
+          parent: "Anisa B.",
+          role: "Prind i grupmoshës 3-6 vjeç",
+          text: "Një ambient jashtëzakonisht i ngrohtë dhe i sigurt. Vajza ime vjen me dëshirë çdo ditë dhe programi me Anglisht e Kung-Fu i ka dhënë shumë vetëbesim.",
+          rating: 5
+        },
+        {
+          parent: "Erion M.",
+          role: "Prind i grupmoshës 6m - 3v",
+          text: "Eksperienca 27-vjeçare e drejtoreshës ndihet në çdo detaj. Si prind i ri, vlerësoj shumë raportet ditore dhe qetësinë që më jep monitorimi me kamera.",
+          rating: 5
+        },
+        {
+          parent: "Valbona K.",
+          role: "Prind i Qendrës M.I.K.E",
+          text: "Stafi është shumë profesional dhe i dashur. Pastërtia dhe ushqimi cilësor janë pikat që më bënë ta përzgjedh këtë qendër mbi të tjerat.",
+          rating: 5
+        }
+      ]
     },
-    {
-      parent: "Erion M.",
-      role: "Prind i grupmoshës 6m - 3v",
-      text: "Eksperienca 27-vjeçare e drejtoreshës ndihet në çdo detaj. Si prind i ri, vlerësoj shumë raportet ditore dhe qetësinë që më jep monitorimi me kamera.",
-      rating: 5
-    },
-    {
-      parent: "Valbona K.",
-      role: "Prind i Qendrës M.I.K.E",
-      text: "Stafi është shumë profesional dhe i dashur. Pastërtia dhe ushqimi cilësor janë pikat që më bënë ta përzgjedh këtë qendër mbi të tjerat.",
-      rating: 5
+    en: {
+      sub: "TESTIMONIALS",
+      title: "What parents say",
+      bannerTitle: "Become a part of our community today.",
+      bannerDesc: "Visits are available by appointment only, 17:00 – 18:00",
+      bannerBtn: "BOOK A VISIT",
+      feedbacks: [
+        {
+          parent: "Anisa B.",
+          role: "Parent of age group 3-6 years",
+          text: "An incredibly warm and secure environment. My daughter loves coming here every day, and the English and Kung-Fu programs have boosted her confidence.",
+          rating: 5
+        },
+        {
+          parent: "Erion M.",
+          role: "Parent of age group 6m - 3y",
+          text: "The director's 27-year experience is felt in every detail. As a new parent, I highly value the daily updates and peace of mind from camera monitoring.",
+          rating: 5
+        },
+        {
+          parent: "Valbona K.",
+          role: "Parent of M.I.K.E Center",
+          text: "The staff is highly professional and loving. The cleanliness and premium food quality are the exact reasons why I chose this center over others.",
+          rating: 5
+        }
+      ]
     }
-  ];
+  };
+
+  const t = translations[language];
 
   return (
     <section className="py-24 bg-white overflow-hidden">
@@ -30,19 +71,19 @@ const ParentFeedbacks = () => {
         
         {/* Background Decoration */}
         <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 opacity-5 pointer-events-none">
-            <Quote size={300} className="text-mikePurple" />
+          <Quote size={300} className="text-mikePurple" />
         </div>
 
         {/* Header */}
         <div className="text-center mb-16">
-          <span className="text-mikePurple font-bold uppercase tracking-widest text-xs">PËRSHTYPYET</span>
-          <h2 className="text-3xl md:text-5xl font-black text-mikeDark mt-2">Çfarë thonë prindërit</h2>
+          <span className="text-mikePurple font-bold uppercase tracking-widest text-xs">{t.sub}</span>
+          <h2 className="text-3xl md:text-5xl font-black text-mikeDark mt-2">{t.title}</h2>
           <div className="h-1.5 w-24 bg-mikePurple mx-auto mt-6 rounded-full" />
         </div>
 
         {/* Feedbacks Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {feedbacks.map((item, index) => (
+          {t.feedbacks.map((item, index) => (
             <div 
               key={index}
               className="bg-gray-50 p-8 md:p-10 rounded-[3rem] border border-transparent hover:border-mikePurple/20 hover:bg-white hover:shadow-2xl transition-all duration-500 group relative"
@@ -78,26 +119,26 @@ const ParentFeedbacks = () => {
 
         {/* Bottom Banner */}
         <div className="mt-20 bg-mikeDark rounded-[3rem] p-10 md:p-16 text-center text-white relative overflow-hidden">
-  <div className="absolute inset-0 bg-mikePurple/10 translate-y-1/2 rounded-full scale-150 blur-3xl" />
+          <div className="absolute inset-0 bg-mikePurple/10 translate-y-1/2 rounded-full scale-150 blur-3xl" />
 
-  <h3 className="text-2xl md:text-3xl font-bold mb-4 relative z-10">
-    Bëhuni pjesë e komunitetit tonë sot.
-  </h3>
+          <h3 className="text-2xl md:text-3xl font-bold mb-4 relative z-10">
+            {t.bannerTitle}
+          </h3>
 
-  <p className="text-sm text-purple-100 mb-8 relative z-10">
-    Vizitat bëhen vetëm me rezervim, ora 17:00 – 18:00
-  </p>
+          <p className="text-sm text-purple-100 mb-8 relative z-10">
+            {t.bannerDesc}
+          </p>
 
-  <button
-    onClick={() => {
-      const el = document.getElementById("contactSection");
-      el?.scrollIntoView({ behavior: "smooth" });
-    }}
-    className="bg-mikePurple hover:bg-white hover:text-mikePurple text-white px-10 py-4 rounded-full font-black transition-all duration-300 relative z-10 shadow-xl"
-  >
-    REZERVO NJË VIZITË
-  </button>
-</div>
+          <button
+            onClick={() => {
+              const el = document.getElementById("contactSection");
+              el?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="bg-mikePurple hover:bg-white hover:text-mikePurple text-white px-10 py-4 rounded-full font-black transition-all duration-300 relative z-10 shadow-xl"
+          >
+            {t.bannerBtn}
+          </button>
+        </div>
       </div>
     </section>
   );

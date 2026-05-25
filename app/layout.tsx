@@ -1,6 +1,7 @@
 // app/layout.tsx
 import { Geist, Geist_Mono } from "next/font/google"; // Changed from 'geist/font'
 import "./globals.css";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,7 +25,10 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="antialiased min-h-screen bg-white text-mikeDark">
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
+        
       </body>
     </html>
   );

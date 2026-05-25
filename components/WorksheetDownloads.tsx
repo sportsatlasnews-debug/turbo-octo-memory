@@ -1,37 +1,101 @@
+"use client";
 import React from 'react';
 import { Download, Palette, BookText, Brain, Calculator } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 const WorksheetDownloads = () => {
-  const materials = [
-    {
-      title: "Zhvillim Artistik",
-      description: "Fletë pune për ngjyrosje, vizatim dhe projekte kreative.",
-      icon: <Palette className="text-pink-500" size={28} />,
-      color: "bg-pink-50",
-      link: "https://drive.google.com/drive/folders/1oPSOPucYgIpnRYfIE1vQfQ8O86h5rPJI?usp=drive_link" 
+  const { language } = useLanguage();
+
+  const translations = {
+    sq: {
+      sub: "Burime Edukative",
+      title: "Mësoni dhe luani në shtëpi",
+      desc: "Shkarkoni materialet tona të përgatitura nga mësueset e Qendrës M.I.KE për të mbështetur zhvillimin e fëmijës tuaj.",
+      btnText: "Shkarko",
+      infoText: "Materialet janë falas për të gjithë prindërit e komunitetit tonë. Printojini dhe filloni argëtimin!",
+      materials: [
+        {
+          id: "artistic",
+          title: "Zhvillim Artistik",
+          description: "Fletë pune për ngjyrosje, vizatim dhe projekte kreative.",
+          link: "https://drive.google.com/drive/folders/1oPSOPucYgIpnRYfIE1vQfQ8O86h5rPJI?usp=drive_link" 
+        },
+        {
+          id: "language",
+          title: "Zhvillim Gjuhësor",
+          description: "Ushtrime për alfabetin, leximin fillestar dhe pasurimin e fjalorit.",
+          link: "https://drive.google.com/drive/folders/107nurGoyePX7ARuEuZ9V5xAFmEjORnZ8?usp=drive_link"
+        },
+        {
+          id: "intellectual",
+          title: "Zhvillim Intelektual",
+          description: "Lojëra logjike, puzzle dhe ushtrime për vëmendjen.",
+          link: "https://drive.google.com/drive/folders/1_qjhtKNz8SRhXsVBYt72c0NeMU4hpGe_?usp=drive_link"
+        },
+        {
+          id: "mathematical",
+          title: "Zhvillim Matematikor",
+          description: "Njohja e numrave, formave gjeometrike dhe mbledhjet e para.",
+          link: "https://drive.google.com/drive/folders/1NjYteoIh1DfChS3YV5C9Z4ZcM86oQp_C?usp=drive_link"
+        }
+      ]
     },
-    {
-      title: "Zhvillim Gjuhësor",
-      description: "Ushtrime për alfabetin, leximin fillestar dhe pasurimin e fjalorit.",
-      icon: <BookText className="text-blue-500" size={28} />,
-      color: "bg-blue-50",
-      link: "https://drive.google.com/drive/folders/107nurGoyePX7ARuEuZ9V5xAFmEjORnZ8?usp=drive_link"
-    },
-    {
-      title: "Zhvillim Intelektual",
-      description: "Lojëra logjike, puzzle dhe ushtrime për vëmendjen.",
-      icon: <Brain className="text-purple-500" size={28} />,
-      color: "bg-purple-50",
-      link: "https://drive.google.com/drive/folders/1_qjhtKNz8SRhXsVBYt72c0NeMU4hpGe_?usp=drive_link"
-    },
-    {
-      title: "Zhvillim Matematikor",
-      description: "Njohja e numrave, formave gjeometrike dhe mbledhjet e para.",
-      icon: <Calculator className="text-orange-500" size={28} />,
-      color: "bg-orange-50",
-      link: "https://drive.google.com/drive/folders/1NjYteoIh1DfChS3YV5C9Z4ZcM86oQp_C?usp=drive_link"
+    en: {
+      sub: "Educational Resources",
+      title: "Learn and Play at Home",
+      desc: "Download our worksheets carefully curated by the educators at M.I.K.E Center to support your child's ongoing development.",
+      btnText: "Download",
+      infoText: "These materials are free for all parents in our community. Print them out and let the fun begin!",
+      materials: [
+        {
+          id: "artistic",
+          title: "Artistic Development",
+          description: "Worksheets for coloring, drawing, and engaging creative projects.",
+          link: "https://drive.google.com/drive/folders/1oPSOPucYgIpnRYfIE1vQfQ8O86h5rPJI?usp=drive_link" 
+        },
+        {
+          id: "language",
+          title: "Language Development",
+          description: "Exercises focused on the alphabet, early reading, and vocabulary building.",
+          link: "https://drive.google.com/drive/folders/107nurGoyePX7ARuEuZ9V5xAFmEjORnZ8?usp=drive_link"
+        },
+        {
+          id: "intellectual",
+          title: "Intellectual Development",
+          description: "Logic games, interactive puzzles, and specialized focus exercises.",
+          link: "https://drive.google.com/drive/folders/1_qjhtKNz8SRhXsVBYt72c0NeMU4hpGe_?usp=drive_link"
+        },
+        {
+          id: "mathematical",
+          title: "Mathematical Development",
+          description: "Introduction to numbers, geometric shapes, and basic early math skills.",
+          link: "https://drive.google.com/drive/folders/1NjYteoIh1DfChS3YV5C9Z4ZcM86oQp_C?usp=drive_link"
+        }
+      ]
     }
-  ];
+  };
+
+  const t = translations[language];
+
+  // Mapimi i ikonave statike, ngjyrave dhe sfondeve bazuar në ID-në e materialit
+  const stylesMap: Record<string, { icon: React.ReactNode; color: string }> = {
+    artistic: {
+      icon: <Palette className="text-pink-500" size={28} />,
+      color: "bg-pink-50"
+    },
+    language: {
+      icon: <BookText className="text-blue-500" size={28} />,
+      color: "bg-blue-50"
+    },
+    intellectual: {
+      icon: <Brain className="text-purple-500" size={28} />,
+      color: "bg-purple-50"
+    },
+    mathematical: {
+      icon: <Calculator className="text-orange-500" size={28} />,
+      color: "bg-orange-50"
+    }
+  };
 
   return (
     <section className="py-20 bg-white">
@@ -40,10 +104,10 @@ const WorksheetDownloads = () => {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div className="max-w-2xl">
-            <span className="text-mikePurple font-bold uppercase tracking-widest text-xs">Burime Edukative</span>
-            <h2 className="text-3xl md:text-4xl font-black text-mikeDark mt-2">Mësoni dhe luani në shtëpi</h2>
+            <span className="text-mikePurple font-bold uppercase tracking-widest text-xs">{t.sub}</span>
+            <h2 className="text-3xl md:text-4xl font-black text-mikeDark mt-2">{t.title}</h2>
             <p className="text-gray-500 mt-4 font-medium">
-              Shkarkoni materialet tona të përgatitura nga mësueset e Qendrës M.I.K.E për të mbështetur zhvillimin e fëmijës tuaj.
+              {t.desc}
             </p>
           </div>
           <div className="hidden md:block">
@@ -55,33 +119,38 @@ const WorksheetDownloads = () => {
 
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {materials.map((item, index) => (
-            <div 
-              key={index}
-              className="group p-8 rounded-[2.5rem] border border-gray-100 bg-white hover:border-mikePurple/30 hover:shadow-xl transition-all duration-300 flex flex-col h-full"
-            >
-              {/* Icon Container */}
-              <div className={`w-16 h-16 ${item.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                {item.icon}
-              </div>
-
-              <h3 className="text-xl font-black text-mikeDark mb-3 leading-tight">
-                {item.title}
-              </h3>
-              
-              <p className="text-sm text-gray-500 leading-relaxed mb-8 flex-grow">
-                {item.description}
-              </p>
-
-              <a 
-                href={item.link}
-                className="inline-flex items-center justify-between w-full p-4 bg-gray-50 text-mikeDark font-bold rounded-2xl group-hover:bg-mikePurple group-hover:text-white transition-all"
+          {t.materials.map((item) => {
+            const style = stylesMap[item.id];
+            return (
+              <div 
+                key={item.id}
+                className="group p-8 rounded-[2.5rem] border border-gray-100 bg-white hover:border-mikePurple/30 hover:shadow-xl transition-all duration-300 flex flex-col h-full"
               >
-                Shkarko
-                <Download size={18} />
-              </a>
-            </div>
-          ))}
+                {/* Icon Container */}
+                <div className={`w-16 h-16 ${style.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                  {style.icon}
+                </div>
+
+                <h3 className="text-xl font-black text-mikeDark mb-3 leading-tight">
+                  {item.title}
+                </h3>
+                
+                <p className="text-sm text-gray-500 leading-relaxed mb-8 flex-grow">
+                  {item.description}
+                </p>
+
+                <a 
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-between w-full p-4 bg-gray-50 text-mikeDark font-bold rounded-2xl group-hover:bg-mikePurple group-hover:text-white transition-all"
+                >
+                  {t.btnText}
+                  <Download size={18} />
+                </a>
+              </div>
+            );
+          })}
         </div>
 
         {/* Info Box */}
@@ -90,7 +159,7 @@ const WorksheetDownloads = () => {
                 <span className="text-mikePurple font-bold">!</span>
             </div>
             <p className="text-sm text-purple-800 font-medium">
-                Materialet janë falas për të gjithë prindërit e komunitetit tonë. Printojini dhe filloni argëtimin!
+                {t.infoText}
             </p>
         </div>
 
