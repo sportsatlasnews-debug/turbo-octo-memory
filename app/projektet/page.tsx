@@ -1,12 +1,33 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react"; // Shtoni useEffect
 import Navbar from "@/components/Navbar";
 import Footer from '@/components/Footer';
-import { Lightbulb, Layers, Star } from "lucide-react";
+import ProjectModal from "@/components/ProjectModal";
+import { Lightbulb, Layers, Star, ArrowUpRight } from "lucide-react";
 import { useLanguage } from '@/context/LanguageContext';
 
 const ProjectsPage = () => {
   const { language } = useLanguage();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [imageUrls, setImageUrls] = useState<string[]>([]); // Ruajmë rrugët e fotove
+
+  // Efekti për të marrë fotot automatikisht dhe për t'i bërë Preload instant
+  useEffect(() => {
+    fetch('/api/project-images')
+      .then(res => res.json())
+      .then(data => {
+        if (data.images && data.images.length > 0) {
+          setImageUrls(data.images);
+          
+          // Teknika e Preloading: I ngarkojmë fotot në sfond që kur ngarkohet faqja
+          data.images.forEach((src: string) => {
+            const img = new Image();
+            img.src = src;
+          });
+        }
+      })
+      .catch(err => console.error("Gabim gjatë preloading të fotove:", err));
+  }, []);
 
   const translations = {
     sq: {
@@ -24,6 +45,7 @@ const ProjectsPage = () => {
       valFocus: "Mbështetje Lokale & Kujdes Ditor",
       lblStatus: "Statusi",
       valStatus: "Aktualisht Aktiv",
+      btnReadMore: "Lexo Më Shumë",
 
       // Table Context
       tableSeparator: "Historiku i Projekteve të Implementuara",
@@ -142,6 +164,7 @@ const ProjectsPage = () => {
       valFocus: "Local Outreach & Daycare Services",
       lblStatus: "Status",
       valStatus: "Currently Active",
+      btnReadMore: "Read More",
 
       // Table Context
       tableSeparator: "Historical List of Implemented Projects",
@@ -292,22 +315,35 @@ const ProjectsPage = () => {
               {t.featuredDesc}
             </p>
 
-            {/* Info Mini-Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 border-t border-white/10 pt-6 text-left">
-              <div>
-                <span className="block text-[10px] uppercase tracking-wider text-purple-300 font-bold">{t.lblOrg}</span>
-                <span className="text-sm font-bold text-white">{t.valOrg}</span>
+            {/* Info Mini-Grid me butonin e ri Read More */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-t border-white/10 pt-6 text-left">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 flex-grow">
+                <div>
+                  <span className="block text-[10px] uppercase tracking-wider text-purple-300 font-bold">{t.lblOrg}</span>
+                  <span className="text-sm font-bold text-white">{t.valOrg}</span>
+                </div>
+                <div>
+                  <span className="block text-[10px] uppercase tracking-wider text-purple-300 font-bold">{t.lblFocus}</span>
+                  <span className="text-sm font-bold text-white">{t.valFocus}</span>
+                </div>
+                <div>
+                  <span className="block text-[10px] uppercase tracking-wider text-purple-300 font-bold">{t.lblStatus}</span>
+                  <span className="inline-flex items-center gap-1.5 text-sm font-bold text-emerald-400">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                    {t.valStatus}
+                  </span>
+                </div>
               </div>
-              <div>
-                <span className="block text-[10px] uppercase tracking-wider text-purple-300 font-bold">{t.lblFocus}</span>
-                <span className="text-sm font-bold text-white">{t.valFocus}</span>
-              </div>
-              <div>
-                <span className="block text-[10px] uppercase tracking-wider text-purple-300 font-bold">{t.lblStatus}</span>
-                <span className="inline-flex items-center gap-1.5 text-sm font-bold text-emerald-400">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                  {t.valStatus}
-                </span>
+
+              {/* Butoni elegant që hap modalin duke ndjekur gjuhën */}
+              <div className="shrink-0 pt-2 sm:pt-0">
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="inline-flex items-center gap-2 bg-mikePurple text-white px-6 py-3.5 rounded-2xl font-black text-xs uppercase tracking-wider hover:bg-white hover:text-mikeDark transition-all shadow-lg group"
+                >
+                  {t.btnReadMore}
+                  <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </button>
               </div>
             </div>
           </div>
@@ -355,6 +391,14 @@ const ProjectsPage = () => {
           </div>
         </div>
       </section>
+
+{/* RENDERI I MODALIT TË RI */}
+      <ProjectModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        language={language} 
+        images={imageUrls} // Kalojmë fotot e gjetura këtu
+      />
 
       <Footer />
     </main>
