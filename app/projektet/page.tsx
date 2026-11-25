@@ -2,18 +2,20 @@
 import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Footer from '@/components/Footer';
 import ProjectModal from "@/components/ProjectModal";
 import DhntProjectModal from "@/components/DhntProjectModal";
 import { Lightbulb, Layers, Star, ArrowUpRight, ShieldAlert } from "lucide-react";
-import { useLanguage } from "@/context/LanguageContext";
+import { useLanguage } from '@/context/LanguageContext';
 
-const ProjectsPage = () => {
+const ProjectsContent = () => {
   const { language } = useLanguage();
   const searchParams = useSearchParams();
-
+  
+  // Dy state të ndara për dy modalet
   const [isMikeModalOpen, setIsMikeModalOpen] = useState(false);
   const [isDhntModalOpen, setIsDhntModalOpen] = useState(false);
+  
   const [imageUrls, setImageUrls] = useState<string[]>([]);
 
   // Hap automatikisht modalen e DHNT nëse linku ka ?project=dhnt ose #dhnt
@@ -29,9 +31,9 @@ const ProjectsPage = () => {
   }, [searchParams]);
 
   useEffect(() => {
-    fetch("/api/project-images")
-      .then((res) => res.json())
-      .then((data) => {
+    fetch('/api/project-images')
+      .then(res => res.json())
+      .then(data => {
         if (data.images && data.images.length > 0) {
           setImageUrls(data.images);
           data.images.forEach((src: string) => {
@@ -40,10 +42,10 @@ const ProjectsPage = () => {
           });
         }
       })
-      .catch((err) => console.error("Gabim gjatë preloading të fotove:", err));
+      .catch(err => console.error("Gabim gjatë preloading të fotove:", err));
   }, []);
 
-  // Opsionale: pastro query param nga URL kur mbyllet modalja (pa rifreskuar faqen)
+  // Pastron ?project=dhnt nga URL kur mbyllet modalja (pa rifreskuar faqen)
   const handleCloseDhntModal = () => {
     setIsDhntModalOpen(false);
     if (typeof window !== "undefined") {
@@ -396,7 +398,7 @@ const ProjectsPage = () => {
           </div>
 
           {/* PROJEKTI KRYESOR 2 (I RI - DHNT) */}
-          <div className="bg-gradient-to-br from-slate-900 via-indigo-950 to-purple-950 text-white rounded-[2.5rem] p-8 md:p-12 shadow-xl relative overflow-hidden group">
+          <div id="dhnt" className="bg-gradient-to-br from-slate-900 via-indigo-950 to-purple-950 text-white rounded-[2.5rem] p-8 md:p-12 shadow-xl relative overflow-hidden group">
             <div className="absolute -right-10 -bottom-10 w-60 h-60 bg-indigo-500/20 rounded-full blur-3xl group-hover:bg-indigo-500/30 transition-all duration-700" />
             
             <div className="relative z-10 max-w-4xl">
@@ -507,6 +509,14 @@ const ProjectsPage = () => {
 
       <Footer />
     </main>
+  );
+};
+
+const ProjectsPage = () => {
+  return (
+    <Suspense fallback={null}>
+      <ProjectsContent />
+    </Suspense>
   );
 };
 
