@@ -1,25 +1,27 @@
 "use client";
-import React, { useState, useEffect } from "react"; // Shtoni useEffect
+import React, { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from '@/components/Footer';
 import ProjectModal from "@/components/ProjectModal";
-import { Lightbulb, Layers, Star, ArrowUpRight } from "lucide-react";
+import DhntProjectModal from "@/components/DhntProjectModal";
+import { Lightbulb, Layers, Star, ArrowUpRight, ShieldAlert } from "lucide-react";
 import { useLanguage } from '@/context/LanguageContext';
 
 const ProjectsPage = () => {
   const { language } = useLanguage();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [imageUrls, setImageUrls] = useState<string[]>([]); // Ruajmë rrugët e fotove
+  
+  // Dy state të ndara për dy modalet
+  const [isMikeModalOpen, setIsMikeModalOpen] = useState(false);
+  const [isDhntModalOpen, setIsDhntModalOpen] = useState(false);
+  
+  const [imageUrls, setImageUrls] = useState<string[]>([]);
 
-  // Efekti për të marrë fotot automatikisht dhe për t'i bërë Preload instant
   useEffect(() => {
     fetch('/api/project-images')
       .then(res => res.json())
       .then(data => {
         if (data.images && data.images.length > 0) {
           setImageUrls(data.images);
-          
-          // Teknika e Preloading: I ngarkojmë fotot në sfond që kur ngarkohet faqja
           data.images.forEach((src: string) => {
             const img = new Image();
             img.src = src;
@@ -35,7 +37,7 @@ const ProjectsPage = () => {
       metaTitle: "Projektet Sociale",
       metaDesc: "Projektet kryesore dhe programet institucionale të implementuara nga Qendra M.I.K.E ndër vite në mbështetje të komunitetit.",
       
-      // Featured Project Card
+      // Featured Project 1 (Ekzistuesi)
       featuredBadge: "Projekti Kryesor",
       featuredTitle: "M.I.K.E në lagjen time",
       featuredDesc: "Ky është programi ynë më i rëndësishëm i shtrirjes në komunitet, i cili synon të sjellë shërbimet e kujdesit, edukimit dhe mbështetjes psiko-sociale direkt në lagjet tuaja. Përmes këtij projekti, Qendra M.I.K.E krijon pika të aksesueshme për familjet në nevojë, fëmijët dhe moshën e tretë, duke ofruar asistencë të personalizuar dhe duke ndërtuar rrjete të forta solidariteti lokal në çdo njësi administrative.",
@@ -46,6 +48,17 @@ const ProjectsPage = () => {
       lblStatus: "Statusi",
       valStatus: "Aktualisht Aktiv",
       btnReadMore: "Lexo Më Shumë",
+
+      // Featured Project 2 (Projekti i ri DHNT)
+      featured2Badge: "Projekti Kryesor • Rajonal",
+      featured2Title: "DHUNA NDAJ GRAVE NË BALLKANIN PERËNDIMOR E NDËRMJETËSUAR NGA TEKNOLOGJIA",
+      featured2Desc: "Ky aktivitet/publikim realizohet/përgatitet nga Fondacioni LARA, Qendra për Mbështetjen e Grave dhe Medica Kosova në kuadër të programit „BE-ja për barazinë gjinore: fuqizimi ekonomik i grave dhe ndalimi i dhunës ndaj grave“, i cili financohet nga Bashkimi Evropian dhe zbatohet bashkërisht nga UN Women dhe UNDP.",
+      lblDonors2: "Financuar nga",
+      valDonors2: "Bashkimi Evropian (UN Women & UNDP)",
+      lblFocus2: "Fokusi",
+      valFocus2: "Kurrikulë Krahasuese & Trajnim",
+      lblYear2: "Viti / Botimi",
+      valYear2: "2026",
 
       // Table Context
       tableSeparator: "Historiku i Projekteve të Implementuara",
@@ -154,7 +167,7 @@ const ProjectsPage = () => {
       metaTitle: "Social Projects",
       metaDesc: "Key projects and institutional programs implemented by M.I.K.E Center throughout the years in support of the community.",
       
-      // Featured Project Card
+      // Featured Project 1 (Existing)
       featuredBadge: "Featured Project",
       featuredTitle: "M.I.K.E in my neighborhood",
       featuredDesc: "This is our core community outreach program, designed to bring care, education, and psycho-social support services directly to your doorsteps. Through this initiative, M.I.K.E Center establishes highly accessible support hubs for vulnerable families, children, and the elderly, delivering personalized assistance while weaving a resilient net of local solidarity across every administrative unit.",
@@ -165,6 +178,17 @@ const ProjectsPage = () => {
       lblStatus: "Status",
       valStatus: "Currently Active",
       btnReadMore: "Read More",
+
+      // Featured Project 2 (New DHNT Project)
+      featured2Badge: "Featured Project • Regional",
+      featured2Title: "TECHNOLOGY-FACILITATED VIOLENCE AGAINST WOMEN IN THE WESTERN BALKANS",
+      featured2Desc: "Regional Comparative Curriculum and Four-Day Online Training Program, implemented within the framework of the 'EU for Gender Equality: Women's Economic Empowerment and Ending Violence Against Women' program, funded by the European Union and jointly implemented by UN Women and UNDP. This publication examines legal frameworks, institutional responses, and protection mechanisms against digital violence across 6 Western Balkan economies.",
+      lblDonors2: "Funded by",
+      valDonors2: "European Union (UN Women & UNDP)",
+      lblFocus2: "Focus",
+      valFocus2: "Comparative Curriculum & TFV Training",
+      lblYear2: "Year / Publication",
+      valYear2: "2026 (Downloadable PDF)",
 
       // Table Context
       tableSeparator: "Historical List of Implemented Projects",
@@ -294,61 +318,111 @@ const ProjectsPage = () => {
 
       <section className="container mx-auto px-6 pb-24">
         
-        {/* ================= PROJEKTI KRYESOR (FEATURED CARD) ================= */}
-        <div className="mb-16 bg-gradient-to-br from-mikeDark to-purple-950 text-white rounded-[2.5rem] p-8 md:p-12 shadow-xl relative overflow-hidden group">
-          <div className="absolute -right-10 -bottom-10 w-60 h-60 bg-mikePurple/20 rounded-full blur-3xl group-hover:bg-mikePurple/30 transition-all duration-700" />
+        {/* ================= DY PROJEKTET KRYESORE (FEATURED CARDS) ================= */}
+        <div className="mb-16 space-y-8">
           
-          <div className="relative z-10 max-w-4xl">
-            {/* Badge i projektit kryesor */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-mikePurple text-white rounded-full text-xs font-black uppercase tracking-widest mb-6 animate-pulse">
-              <Star size={12} fill="white" />
-              {t.featuredBadge}
-            </div>
-
-            {/* Titulli */}
-            <h2 className="text-3xl md:text-5xl font-black italic uppercase tracking-tight mb-4 text-white">
-              {t.featuredTitle}
-            </h2>
-
-            {/* Përshkrimi */}
-            <p className="text-purple-100/90 text-sm md:text-base leading-relaxed mb-8 text-justify">
-              {t.featuredDesc}
-            </p>
-
-            {/* Info Mini-Grid me butonin e ri Read More */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-t border-white/10 pt-6 text-left">
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 flex-grow">
-                <div>
-                  <span className="block text-[10px] uppercase tracking-wider text-purple-300 font-bold">{t.lblOrg}</span>
-                  <span className="text-sm font-bold text-white">{t.valOrg}</span>
-                </div>
-                <div>
-                  <span className="block text-[10px] uppercase tracking-wider text-purple-300 font-bold">{t.lblFocus}</span>
-                  <span className="text-sm font-bold text-white">{t.valFocus}</span>
-                </div>
-                <div>
-                  <span className="block text-[10px] uppercase tracking-wider text-purple-300 font-bold">{t.lblStatus}</span>
-                  <span className="inline-flex items-center gap-1.5 text-sm font-bold text-emerald-400">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                    {t.valStatus}
-                  </span>
-                </div>
+          {/* PROJEKTI KRYESOR 1 (EKZISTUESI) */}
+          <div className="bg-gradient-to-br from-mikeDark to-purple-950 text-white rounded-[2.5rem] p-8 md:p-12 shadow-xl relative overflow-hidden group">
+            <div className="absolute -right-10 -bottom-10 w-60 h-60 bg-mikePurple/20 rounded-full blur-3xl group-hover:bg-mikePurple/30 transition-all duration-700" />
+            
+            <div className="relative z-10 max-w-4xl">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-mikePurple text-white rounded-full text-xs font-black uppercase tracking-widest mb-6 animate-pulse">
+                <Star size={12} fill="white" />
+                {t.featuredBadge}
               </div>
 
-              {/* Butoni elegant që hap modalin duke ndjekur gjuhën */}
-              <div className="shrink-0 pt-2 sm:pt-0">
-                <button
-                  onClick={() => setIsModalOpen(true)}
-                  className="inline-flex items-center gap-2 bg-mikePurple text-white px-6 py-3.5 rounded-2xl font-black text-xs uppercase tracking-wider hover:bg-white hover:text-mikeDark transition-all shadow-lg group"
-                >
-                  {t.btnReadMore}
-                  <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </button>
+              <h2 className="text-3xl md:text-5xl font-black italic uppercase tracking-tight mb-4 text-white">
+                {t.featuredTitle}
+              </h2>
+
+              <p className="text-purple-100/90 text-sm md:text-base leading-relaxed mb-8 text-justify">
+                {t.featuredDesc}
+              </p>
+
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-t border-white/10 pt-6 text-left">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 flex-grow">
+                  <div>
+                    <span className="block text-[10px] uppercase tracking-wider text-purple-300 font-bold">{t.lblOrg}</span>
+                    <span className="text-sm font-bold text-white">{t.valOrg}</span>
+                  </div>
+                  <div>
+                    <span className="block text-[10px] uppercase tracking-wider text-purple-300 font-bold">{t.lblFocus}</span>
+                    <span className="text-sm font-bold text-white">{t.valFocus}</span>
+                  </div>
+                  <div>
+                    <span className="block text-[10px] uppercase tracking-wider text-purple-300 font-bold">{t.lblStatus}</span>
+                    <span className="inline-flex items-center gap-1.5 text-sm font-bold text-emerald-400">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                      {t.valStatus}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="shrink-0 pt-2 sm:pt-0">
+                  <button
+                    onClick={() => setIsMikeModalOpen(true)}
+                    className="inline-flex items-center gap-2 bg-mikePurple text-white px-6 py-3.5 rounded-2xl font-black text-xs uppercase tracking-wider hover:bg-white hover:text-mikeDark transition-all shadow-lg group"
+                  >
+                    {t.btnReadMore}
+                    <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
+
+          {/* PROJEKTI KRYESOR 2 (I RI - DHNT) */}
+          <div className="bg-gradient-to-br from-slate-900 via-indigo-950 to-purple-950 text-white rounded-[2.5rem] p-8 md:p-12 shadow-xl relative overflow-hidden group">
+            <div className="absolute -right-10 -bottom-10 w-60 h-60 bg-indigo-500/20 rounded-full blur-3xl group-hover:bg-indigo-500/30 transition-all duration-700" />
+            
+            <div className="relative z-10 max-w-4xl">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-indigo-600 text-white rounded-full text-xs font-black uppercase tracking-widest mb-6">
+                <ShieldAlert size={13} />
+                {t.featured2Badge}
+              </div>
+
+              <h2 className="text-2xl md:text-4xl font-black italic uppercase tracking-tight mb-4 text-white leading-tight">
+                {t.featured2Title}
+              </h2>
+
+              <p className="text-indigo-100/90 text-sm md:text-base leading-relaxed mb-8 text-justify">
+                {t.featured2Desc}
+              </p>
+
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-t border-white/10 pt-6 text-left">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 flex-grow">
+                  <div>
+                    <span className="block text-[10px] uppercase tracking-wider text-indigo-300 font-bold">{t.lblDonors2}</span>
+                    <span className="text-sm font-bold text-white">{t.valDonors2}</span>
+                  </div>
+                  <div>
+                    <span className="block text-[10px] uppercase tracking-wider text-indigo-300 font-bold">{t.lblFocus2}</span>
+                    <span className="text-sm font-bold text-white">{t.valFocus2}</span>
+                  </div>
+                  <div>
+                    <span className="block text-[10px] uppercase tracking-wider text-indigo-300 font-bold">{t.lblYear2}</span>
+                    <span className="inline-flex items-center gap-1.5 text-sm font-bold text-emerald-400">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                      {t.valYear2}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="shrink-0 pt-2 sm:pt-0">
+                  <button
+                    onClick={() => setIsDhntModalOpen(true)}
+                    className="inline-flex items-center gap-2 bg-indigo-600 text-white px-6 py-3.5 rounded-2xl font-black text-xs uppercase tracking-wider hover:bg-white hover:text-mikeDark transition-all shadow-lg group"
+                  >
+                    {t.btnReadMore}
+                    <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
-        {/* =================================================================== */}
+        {/* ========================================================================= */}
 
         {/* Separatori i Listës */}
         <div className="mb-6 flex items-center gap-3">
@@ -392,12 +466,19 @@ const ProjectsPage = () => {
         </div>
       </section>
 
-{/* RENDERI I MODALIT TË RI */}
+      {/* MODALI 1: M.I.K.E në lagjen time */}
       <ProjectModal 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
+        isOpen={isMikeModalOpen} 
+        onClose={() => setIsMikeModalOpen(false)} 
         language={language} 
-        images={imageUrls} // Kalojmë fotot e gjetura këtu
+        images={imageUrls} 
+      />
+
+      {/* MODALI 2: DHNT në Ballkanin Perëndimor + Shkarkimi i PDF-së */}
+      <DhntProjectModal
+        isOpen={isDhntModalOpen}
+        onClose={() => setIsDhntModalOpen(false)}
+        language={language}
       />
 
       <Footer />
