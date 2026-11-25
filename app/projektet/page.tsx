@@ -1,25 +1,37 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
-import Footer from '@/components/Footer';
+import Footer from "@/components/Footer";
 import ProjectModal from "@/components/ProjectModal";
 import DhntProjectModal from "@/components/DhntProjectModal";
 import { Lightbulb, Layers, Star, ArrowUpRight, ShieldAlert } from "lucide-react";
-import { useLanguage } from '@/context/LanguageContext';
+import { useLanguage } from "@/context/LanguageContext";
 
 const ProjectsPage = () => {
   const { language } = useLanguage();
-  
-  // Dy state të ndara për dy modalet
+  const searchParams = useSearchParams();
+
   const [isMikeModalOpen, setIsMikeModalOpen] = useState(false);
   const [isDhntModalOpen, setIsDhntModalOpen] = useState(false);
-  
   const [imageUrls, setImageUrls] = useState<string[]>([]);
 
+  // Hap automatikisht modalen e DHNT nëse linku ka ?project=dhnt ose #dhnt
   useEffect(() => {
-    fetch('/api/project-images')
-      .then(res => res.json())
-      .then(data => {
+    const projectParam = searchParams.get("project");
+    const isHashMatch =
+      typeof window !== "undefined" &&
+      (window.location.hash === "#dhnt" || window.location.hash === "#dhnt-modal");
+
+    if (projectParam === "dhnt" || isHashMatch) {
+      setIsDhntModalOpen(true);
+    }
+  }, [searchParams]);
+
+  useEffect(() => {
+    fetch("/api/project-images")
+      .then((res) => res.json())
+      .then((data) => {
         if (data.images && data.images.length > 0) {
           setImageUrls(data.images);
           data.images.forEach((src: string) => {
@@ -28,8 +40,20 @@ const ProjectsPage = () => {
           });
         }
       })
-      .catch(err => console.error("Gabim gjatë preloading të fotove:", err));
+      .catch((err) => console.error("Gabim gjatë preloading të fotove:", err));
   }, []);
+
+  // Opsionale: pastro query param nga URL kur mbyllet modalja (pa rifreskuar faqen)
+  const handleCloseDhntModal = () => {
+    setIsDhntModalOpen(false);
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      if (url.searchParams.has("project")) {
+        url.searchParams.delete("project");
+        window.history.replaceState({}, "", url.toString());
+      }
+    }
+  };
 
   const translations = {
     sq: {
@@ -477,7 +501,7 @@ const ProjectsPage = () => {
       {/* MODALI 2: DHNT në Ballkanin Perëndimor + Shkarkimi i PDF-së */}
       <DhntProjectModal
         isOpen={isDhntModalOpen}
-        onClose={() => setIsDhntModalOpen(false)}
+        onClose={handleCloseDhntModal}
         language={language}
       />
 
